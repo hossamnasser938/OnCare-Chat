@@ -1,0 +1,21 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@navigation": ["src/navigation"],
+      "@navigation/*": ["src/navigation/*"],
+      "@screens": ["src/screens"],
+      "@screens/*": ["src/screens/*"],
+      "@state": ["src/state"],
+      "@state/*": ["src/state/*"],
+      "@data": ["src/data"],
+      "@data/*": ["src/data/*"],
+      "@shared-components": ["src/shared-components"],
+      "@shared-components/*": ["src/shared-components/*"],
+      "@hooks": ["src/hooks"],
+      "@hooks/*": ["src/hooks/*"]
+    }
+  }
+}
