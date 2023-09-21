@@ -3,7 +3,6 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@src/*": ["src/*"],
       "@navigation": ["src/navigation"],
       "@navigation/*": ["src/navigation/*"],
       "@screens": ["src/screens"],
@@ -15,7 +14,11 @@
       "@shared-components": ["src/shared-components"],
       "@shared-components/*": ["src/shared-components/*"],
       "@hooks": ["src/hooks"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@res": ["src/res"],
+      "@res/*": ["src/res/*"],
+      "@utils": ["src/utils"],
+      "@utils/*": ["src/utils/*"]
     }
   }
 }

@@ -1,4 +1,4 @@
 export const useAppStartup = () => {
-  const isUserAuth = true;
+  const isUserAuth = false;
   return {isUserAuth};
 };

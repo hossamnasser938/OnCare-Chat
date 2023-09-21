@@ -1,4 +1,5 @@
 export enum AppRoutes {
+  LandingScreen = 'LandingScreen',
   SigninScreen = 'SigninScreen',
   SignupScreen = 'SignupScreen',
   ChatRoomsNavigator = 'ChatRoomsNavigator',
