@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "330146152776",
+    "project_id": "oncare-chat-1f9bc",
+    "storage_bucket": "oncare-chat-1f9bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330146152776:android:4a50c36fee6fec8370f37d",
+        "android_client_info": {
+          "package_name": "com.oncarechat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkI821K2k2BHH2HfvH_Qu_NEOpWLHxSVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

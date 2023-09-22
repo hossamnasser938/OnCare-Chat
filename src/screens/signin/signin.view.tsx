@@ -2,12 +2,12 @@ import {useValidationRules} from '@hooks/use-validation-rules.hook';
 import {R} from '@res';
 import {
   Button,
+  ErrorText,
   Input,
   KeyboardAvoidingView,
   ScreenContainer,
   VerticalSpace,
 } from '@shared-components';
-import {ErrorText} from '@shared-components/atoms/atoms';
 import {getValidityState} from '@shared-components/input/input.utils';
 import React, {useRef} from 'react';
 import {Controller, useForm} from 'react-hook-form';
@@ -22,7 +22,7 @@ import {
 import {ISigninViewProps, SigninFormData} from './signin.types';
 
 export const SigninView = (props: ISigninViewProps) => {
-  const {onSubmit, signupHandler} = props;
+  const {onSubmit, signupHandler, isLoading} = props;
 
   const passwordRef = useRef<TextInput>() as React.MutableRefObject<TextInput>;
   const focusPassword = () => {
@@ -92,7 +92,11 @@ export const SigninView = (props: ISigninViewProps) => {
             {errors.password ? errors.password.message : ''}
           </ErrorText>
 
-          <Button title={R.strings.login} onPress={submitHandler} />
+          <Button
+            title={R.strings.login}
+            onPress={submitHandler}
+            isLoading={isLoading}
+          />
           <VerticalSpace />
           <Pressable onPress={signupHandler}>
             <SignupHintText>

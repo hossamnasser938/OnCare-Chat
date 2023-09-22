@@ -12,6 +12,7 @@ export type SigninFormData = {
 export interface ISigninViewProps {
   onSubmit: (formData: {email: string; password: string}) => void;
   signupHandler: () => void;
+  isLoading: boolean;
 }
 
 export interface ISigninScreenProps {

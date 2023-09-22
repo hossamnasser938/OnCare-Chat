@@ -1,13 +1,7 @@
 import {AppRoutes} from '@navigation/routes';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {SettingsScreen} from '@screens';
 import React from 'react';
-import {Text, View} from 'react-native';
-
-const SettingsScreen = () => (
-  <View>
-    <Text>SettingsScreen</Text>
-  </View>
-);
 
 const SettingsStack = createNativeStackNavigator();
 

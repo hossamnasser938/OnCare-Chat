@@ -14,4 +14,10 @@ export const strings = {
   minPassword: 'Password is too short',
   minName: 'Name is too short',
   maxName: 'Name is too long',
+  logout: 'Logout',
+  errors: {
+    unexpected: 'Unexpected error',
+    emailAlreadyInUser: 'That email address is already in use!',
+    invalidEmail: 'That email address is invalid!',
+  },
 };

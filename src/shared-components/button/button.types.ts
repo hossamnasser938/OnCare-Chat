@@ -2,4 +2,5 @@ import {PressableProps} from 'react-native';
 
 export interface IButtonProps extends PressableProps {
   title: string;
+  isLoading?: boolean;
 }

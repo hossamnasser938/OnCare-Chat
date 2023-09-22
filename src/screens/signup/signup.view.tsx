@@ -2,12 +2,12 @@ import {useValidationRules} from '@hooks/use-validation-rules.hook';
 import {R} from '@res';
 import {
   Button,
+  ErrorText,
   Input,
   KeyboardAvoidingView,
   ScreenContainer,
   VerticalSpace,
 } from '@shared-components';
-import {ErrorText} from '@shared-components/atoms/atoms';
 import {getValidityState} from '@shared-components/input/input.utils';
 import React, {useRef} from 'react';
 import {Controller, useForm} from 'react-hook-form';
@@ -22,7 +22,7 @@ import {
 import {ISignupViewProps, SignupFormData} from './signup.types';
 
 export const SignupView = (props: ISignupViewProps) => {
-  const {onSubmit, signinHandler} = props;
+  const {onSubmit, signinHandler, isLoading} = props;
 
   const passwordRef = useRef<TextInput>() as React.MutableRefObject<TextInput>;
   const firstNameRef = useRef<TextInput>() as React.MutableRefObject<TextInput>;
@@ -151,7 +151,11 @@ export const SignupView = (props: ISignupViewProps) => {
             {errors.lastName ? errors.lastName.message : ''}
           </ErrorText>
 
-          <Button title={R.strings.signup} onPress={submitHandler} />
+          <Button
+            title={R.strings.signup}
+            onPress={submitHandler}
+            isLoading={isLoading}
+          />
           <VerticalSpace />
           <Pressable onPress={signinHandler}>
             <SigninHintText>

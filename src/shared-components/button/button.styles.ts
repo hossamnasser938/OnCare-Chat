@@ -11,6 +11,7 @@ export const ButtonWrapper = styled.Pressable`
   border-width: 1px;
   border-color: ${R.colors.appTheme.primary};
   padding-vertical: ${hp(1.3)}px;
+  min-height: ${hp(7)}px;
 `;
 
 export const ButtonText = styled.Text`
