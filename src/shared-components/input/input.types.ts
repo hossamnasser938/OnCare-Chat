@@ -1,3 +1,11 @@
 import {TextInputProps} from 'react-native';
 
-export interface IInputProps extends TextInputProps {}
+export enum EValidityState {
+  NONE,
+  VALID,
+  INVALID,
+}
+
+export interface IInputProps extends TextInputProps {
+  validityState: EValidityState;
+}

@@ -5,4 +5,7 @@ export const colors = {
     background: '#fff',
     primaryText: '#fff',
   },
+  grey: '#bbb',
+  green: '#0f0',
+  red: '#f00',
 };
