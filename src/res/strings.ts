@@ -21,4 +21,5 @@ export const strings = {
     invalidEmail: 'That email address is invalid!',
   },
   settings: 'Settings',
+  chat: 'Chat',
 };
