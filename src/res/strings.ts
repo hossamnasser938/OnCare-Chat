@@ -20,4 +20,5 @@ export const strings = {
     emailAlreadyInUser: 'That email address is already in use!',
     invalidEmail: 'That email address is invalid!',
   },
+  settings: 'Settings',
 };

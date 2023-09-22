@@ -8,7 +8,7 @@ const MainTabs = createBottomTabNavigator();
 
 export function MainTabsNavigator() {
   return (
-    <MainTabs.Navigator>
+    <MainTabs.Navigator screenOptions={{headerShown: false}}>
       <MainTabs.Screen
         name={AppRoutes.ChatRoomsNavigator}
         component={ChatRoomsStackNavigator}

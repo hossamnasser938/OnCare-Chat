@@ -7,7 +7,7 @@ const SettingsStack = createNativeStackNavigator();
 
 export function SettingsStackNavigator() {
   return (
-    <SettingsStack.Navigator>
+    <SettingsStack.Navigator screenOptions={{headerShown: false}}>
       <SettingsStack.Screen
         name={AppRoutes.SettingsScreen}
         component={SettingsScreen}

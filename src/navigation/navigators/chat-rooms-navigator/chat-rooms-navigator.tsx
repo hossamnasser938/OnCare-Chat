@@ -19,7 +19,7 @@ const ChatRoomsStack = createNativeStackNavigator();
 
 export function ChatRoomsStackNavigator() {
   return (
-    <ChatRoomsStack.Navigator>
+    <ChatRoomsStack.Navigator screenOptions={{headerShown: false}}>
       <ChatRoomsStack.Screen
         name={AppRoutes.ChatRoomsListScreen}
         component={ChatRoomsListScreen}

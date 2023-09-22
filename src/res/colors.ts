@@ -6,6 +6,7 @@ export const colors = {
     primaryText: '#fff',
   },
   grey: '#bbb',
+  lightGrey: '#eee',
   green: '#0f0',
   red: '#f00',
 };
