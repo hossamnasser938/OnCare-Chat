@@ -5,6 +5,7 @@ import {IUser, User} from './user.mstmodel';
 
 export const AuthStore = types
   .model({
+    initialized: false,
     user: types.maybeNull(User),
   })
   .views(self => ({
@@ -13,6 +14,10 @@ export const AuthStore = types
     },
   }))
   .actions(self => {
+    function setInitialized() {
+      self.initialized = true;
+    }
+
     function setUser(user: IUser) {
       self.user = User.create(user);
     }
@@ -22,7 +27,9 @@ export const AuthStore = types
     }
 
     const signin = flow(function* (email: string, password: string) {
-      yield DataLayer.Auth.signin(email, password);
+      const user: IUser = yield DataLayer.Auth.signin(email, password);
+
+      setUser(user);
     });
 
     const signup = flow(function* (
@@ -31,7 +38,14 @@ export const AuthStore = types
       firstName: string,
       lastName: string,
     ) {
-      yield DataLayer.Auth.signup(email, password, firstName, lastName);
+      const user: IUser = yield DataLayer.Auth.signup(
+        email,
+        password,
+        firstName,
+        lastName,
+      );
+
+      setUser(user);
     });
 
     const logout = flow(function* () {
@@ -39,6 +53,7 @@ export const AuthStore = types
     });
 
     return {
+      setInitialized,
       setUser,
       clearUser,
       signin,

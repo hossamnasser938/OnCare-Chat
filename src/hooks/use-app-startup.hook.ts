@@ -1,23 +1,32 @@
-import auth from '@react-native-firebase/auth';
+import {DataLayer, translateErrorCode} from '@data-layer';
 import {useMSTStore} from '@state';
 import {useEffect} from 'react';
+import {Alert} from 'react-native';
 
 export const useAppStartup = () => {
   const {authStore} = useMSTStore();
 
-  const isAuth = authStore.isAuth;
+  const {isAuth, initialized} = authStore;
 
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(user => {
-      if (user && user.email) {
-        const {uid, email} = user;
-        authStore.setUser({id: uid, email, firstName: '', lastName: ''});
-      } else {
+    const unsubscribe = DataLayer.Auth.subscribe(async firebaseUser => {
+      if (!firebaseUser) {
         authStore.clearUser();
+      } else {
+        if (!authStore.user) {
+          try {
+            const dbUser = await DataLayer.Auth.getUserFromDB(firebaseUser.uid);
+            authStore.setUser(dbUser);
+          } catch (err: any) {
+            Alert.alert(translateErrorCode(err.code));
+          }
+        }
       }
+      authStore.setInitialized();
     });
+
     return unsubscribe;
   }, [authStore]);
 
-  return {isUserAuth: isAuth};
+  return {isUserAuth: isAuth, initialized};
 };

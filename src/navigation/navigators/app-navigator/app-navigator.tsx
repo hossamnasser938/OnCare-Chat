@@ -6,11 +6,17 @@ import {observer} from 'mobx-react-lite';
 import React from 'react';
 
 export const AppNavigator = observer(() => {
-  const {isUserAuth} = useAppStartup();
+  const {isUserAuth, initialized} = useAppStartup();
 
   return (
     <NavigationContainer>
-      {isUserAuth ? <MainTabsNavigator /> : <AuthStackNavigator />}
+      {initialized ? (
+        isUserAuth ? (
+          <MainTabsNavigator />
+        ) : (
+          <AuthStackNavigator />
+        )
+      ) : null}
     </NavigationContainer>
   );
 });
