@@ -1,6 +1,6 @@
 import {AppRoutes} from '@navigation/routes';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {ChatRoomsListScreen} from '@screens';
+import {ChatRoomsListScreen, CreateChatRoomScreen} from '@screens';
 import React from 'react';
 import {Text, View} from 'react-native';
 
@@ -22,6 +22,11 @@ export function ChatRoomsStackNavigator() {
       <ChatRoomsStack.Screen
         name={AppRoutes.ChatRoomScreen}
         component={ChatRoomScreen}
+      />
+      <ChatRoomsStack.Screen
+        name={AppRoutes.CreateChatRoomScreen}
+        component={CreateChatRoomScreen}
+        options={{presentation: 'modal'}}
       />
     </ChatRoomsStack.Navigator>
   );

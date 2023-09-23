@@ -40,8 +40,11 @@ export const SignupView = (props: ISignupViewProps) => {
     lastNameRef.current.focus();
   };
 
-  const {emailValidationRules, passwordValidationRules, nameValidationRules} =
-    useValidationRules();
+  const {
+    emailValidationRules,
+    passwordValidationRules,
+    userNameValidationRules,
+  } = useValidationRules();
 
   const {
     control,
@@ -111,7 +114,7 @@ export const SignupView = (props: ISignupViewProps) => {
 
           <Controller
             control={control}
-            rules={nameValidationRules}
+            rules={userNameValidationRules}
             name="firstName"
             render={({field: {onChange, onBlur, value}}) => (
               <Input
@@ -132,7 +135,7 @@ export const SignupView = (props: ISignupViewProps) => {
 
           <Controller
             control={control}
-            rules={nameValidationRules}
+            rules={userNameValidationRules}
             name="lastName"
             render={({field: {onChange, onBlur, value}}) => (
               <Input

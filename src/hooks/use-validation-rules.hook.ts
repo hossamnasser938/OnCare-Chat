@@ -3,8 +3,10 @@ import {R} from '@res';
 const EMAIL_REG =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const MIN_PASSWORD = 8;
-const MIN_NAME = 1;
-const MAX_NAME = 20;
+const MIN_USER_NAME = 1;
+const MAX_USER_NAME = 20;
+const MIN_CHAT_ROOM_NAME = 2;
+const MAX_CHAT_ROOM_NAME = 100;
 
 export const useValidationRules = () => {
   const requiredValidationRules = {
@@ -27,17 +29,34 @@ export const useValidationRules = () => {
     },
   };
 
-  const nameValidationRules = {
+  const userNameValidationRules = {
     ...requiredValidationRules,
     minLength: {
       message: R.strings.minName,
-      value: MIN_NAME,
+      value: MIN_USER_NAME,
     },
     maxLength: {
       message: R.strings.maxName,
-      value: MAX_NAME,
+      value: MAX_USER_NAME,
     },
   };
 
-  return {emailValidationRules, passwordValidationRules, nameValidationRules};
+  const chatRoomNameValidationRules = {
+    ...requiredValidationRules,
+    minLength: {
+      message: R.strings.minName,
+      value: MIN_CHAT_ROOM_NAME,
+    },
+    maxLength: {
+      message: R.strings.maxName,
+      value: MAX_CHAT_ROOM_NAME,
+    },
+  };
+
+  return {
+    emailValidationRules,
+    passwordValidationRules,
+    userNameValidationRules,
+    chatRoomNameValidationRules,
+  };
 };

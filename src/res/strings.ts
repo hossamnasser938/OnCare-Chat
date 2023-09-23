@@ -19,7 +19,13 @@ export const strings = {
     unexpected: 'Unexpected error',
     emailAlreadyInUser: 'That email address is already in use!',
     invalidEmail: 'That email address is invalid!',
+    existingChatRoom:
+      'A chat room exists with this name. Please pick another name',
   },
   settings: 'Settings',
   chat: 'Chat',
+  newChat: 'New Chat',
+  createNewChat: 'Create New Chat',
+  create: 'Create',
+  chatRoomName: 'Chat Room Name',
 };

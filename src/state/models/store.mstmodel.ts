@@ -1,11 +1,14 @@
 import {types} from 'mobx-state-tree';
 
-import {AuthStore} from './auth.mstmodel';
+import {AuthStore, authStore} from './auth.mstmodel';
+import {ChatRoomsStore, chatRoomsStore} from './chat-rooms.mstmodel';
 
-export const MSTStore = types.model('Root', {
+export const MSTStore = types.model('RootStore', {
   authStore: AuthStore,
+  chatRoomsStore: ChatRoomsStore,
 });
 
 export const mstStore = MSTStore.create({
-  authStore: {},
+  authStore,
+  chatRoomsStore,
 });

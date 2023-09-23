@@ -7,4 +7,5 @@ const PARENT_DB = firebase.app().database(DATABASE_URL);
 
 export const DB = {
   USERS_REF: PARENT_DB.ref('/users/'),
+  CHAT_ROOMS_REF: PARENT_DB.ref('/chat-rooms/'),
 };

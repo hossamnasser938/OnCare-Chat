@@ -1,2 +1,3 @@
+export type {IChatRoom} from './chat-room.mstmodel';
 export {mstStore} from './store.mstmodel';
-export {IUser} from './user.mstmodel';
+export type {IUser} from './user.mstmodel';

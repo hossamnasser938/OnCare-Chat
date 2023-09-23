@@ -1,8 +1,5 @@
 import {AppRoutes} from '@navigation';
-import {
-  IAuthNavigationProp,
-  IAuthRoutProp,
-} from '@navigation/navigators/auth-navigator/auth-navigator.types';
+import {IAuthNavigationProp, IAuthRoutProp} from '@navigation/types';
 
 export type SigninFormData = {
   email: string;

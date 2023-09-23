@@ -4,7 +4,7 @@ import {flow, types} from 'mobx-state-tree';
 import {IUser, User} from './user.mstmodel';
 
 export const AuthStore = types
-  .model({
+  .model('AuthStore', {
     initialized: false,
     user: types.maybeNull(User),
   })
@@ -61,3 +61,5 @@ export const AuthStore = types
       logout,
     };
   });
+
+export const authStore = AuthStore.create();
