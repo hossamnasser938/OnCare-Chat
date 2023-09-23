@@ -1,7 +1,8 @@
 import {R} from '@res';
 import {ButtonText, ScreenContainer} from '@shared-components';
-import React from 'react';
-import {Text, View} from 'react-native';
+import {IChatRoom} from '@state';
+import React, {useCallback} from 'react';
+import {FlatList} from 'react-native';
 
 import {
   CreateChatRoomBtn,
@@ -9,17 +10,26 @@ import {
   NewChatIcon,
 } from './chat-rooms-list.styles';
 import {IChatRoomsViewProps} from './chat-rooms-list.types';
+import {ChatRoomItem} from './components';
 
 export const ChatRoomsListView = (props: IChatRoomsViewProps) => {
   const {createChatHandler, chatRooms} = props;
 
+  const renderChatRoom = useCallback(({item}: {item: IChatRoom}) => {
+    return <ChatRoomItem chatRoom={item} />;
+  }, []);
+
+  const keyExtractor = useCallback((item: IChatRoom) => {
+    return item.name;
+  }, []);
+
   return (
     <ScreenContainer>
-      <View>
-        {chatRooms.map(chatRoom => (
-          <Text>{chatRoom.name}</Text>
-        ))}
-      </View>
+      <FlatList
+        data={chatRooms}
+        keyExtractor={keyExtractor}
+        renderItem={renderChatRoom}
+      />
       <CreateChatRoomBtnWrapper>
         <CreateChatRoomBtn onPress={createChatHandler}>
           <NewChatIcon />

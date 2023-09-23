@@ -1,16 +1,10 @@
+import {CharactersAvatar} from '@shared-components/characters-avatar';
 import React from 'react';
 
-import {UserAvatarWrapper, UserNameShortcutText} from './user-avatar.styles';
-import {IUserAvatarProps} from './user-avatar.types';
+import {IUserAvatar} from './user-avatar.types';
 
-export const UserAvatar = (props: IUserAvatarProps) => {
-  const {user, size} = props;
+export const UserAvatar = (props: IUserAvatar) => {
+  const {size, user} = props;
 
-  return (
-    <UserAvatarWrapper size={size}>
-      <UserNameShortcutText size={size}>
-        {user.userNameShortCut}
-      </UserNameShortcutText>
-    </UserAvatarWrapper>
-  );
+  return <CharactersAvatar size={size} characters={user.userNameShortCut} />;
 };

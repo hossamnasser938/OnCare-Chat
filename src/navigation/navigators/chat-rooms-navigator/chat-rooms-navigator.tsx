@@ -1,14 +1,11 @@
 import {AppRoutes} from '@navigation/routes';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {ChatRoomsListScreen, CreateChatRoomScreen} from '@screens';
+import {
+  ChatRoomScreen,
+  ChatRoomsListScreen,
+  CreateChatRoomScreen,
+} from '@screens';
 import React from 'react';
-import {Text, View} from 'react-native';
-
-const ChatRoomScreen = () => (
-  <View>
-    <Text>ChatRoomScreen</Text>
-  </View>
-);
 
 const ChatRoomsStack = createNativeStackNavigator();
 

@@ -1,7 +1,7 @@
 import {EAvatarSize} from '@shared-components/characters-avatar';
-import {IUser} from '@state';
+import {IChatRoom} from '@state';
 
 export interface IUserAvatar {
-  user: IUser;
+  chatRoom: IChatRoom;
   size: EAvatarSize;
 }

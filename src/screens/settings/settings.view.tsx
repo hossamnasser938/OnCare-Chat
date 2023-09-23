@@ -1,7 +1,11 @@
 import {R} from '@res';
-import {HorizontalLine, ScreenContainer, ScreenTitle} from '@shared-components';
-import {UserAvatar} from '@shared-components/user-avatar/user-avatar';
-import {EUserAvatarSize} from '@shared-components/user-avatar/user-avatar.types';
+import {
+  HorizontalLine,
+  ScreenContainer,
+  ScreenTitle,
+  UserAvatar,
+} from '@shared-components';
+import {EAvatarSize} from '@shared-components/characters-avatar/characters-avatar.types';
 import {useMSTStore} from '@state';
 import React from 'react';
 
@@ -24,7 +28,7 @@ export const SettingsView = (props: ISettingsViewProps) => {
       <ScreenTitle>{R.strings.settings}</ScreenTitle>
       {user && (
         <ProfileWrapper>
-          <UserAvatar user={user} size={EUserAvatarSize.MEDIUM} />
+          <UserAvatar user={user} size={EAvatarSize.MEDIUM} />
           <UserNameText>{user.fullName}</UserNameText>
         </ProfileWrapper>
       )}
