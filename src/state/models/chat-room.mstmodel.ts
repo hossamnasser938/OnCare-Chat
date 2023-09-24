@@ -6,6 +6,7 @@ import {authStore} from './auth.mstmodel';
 import {Message} from './message.mstmodel';
 import {Participant} from './participant.mstmodel';
 import {User} from './user.mstmodel';
+import {usersStore} from './users.mstmodel';
 
 export const ChatRoom = types
   .model('ChatRoom', {
@@ -21,15 +22,21 @@ export const ChatRoom = types
       yield DataLayer.Messages.createMessage(self.name, text, userId!!);
     });
 
-    function messageAdded(dbMessage: IDBMessage) {
-      self.messagesMap.set(dbMessage.id, dbMessage);
-    }
+    const messageChanged = flow(function* (dbMessage: IDBMessage) {
+      yield usersStore.fetchUsers(Object.keys(dbMessage.readers || {}));
+      const message = Message.create({
+        ...dbMessage,
+        readersMap: dbMessage.readers,
+      });
+      self.messagesMap.set(message.id, message);
+      return message;
+    });
 
     function participantChanged(dbParticipant: IDBParticipant) {
       self.participantsMap.set(dbParticipant.user, dbParticipant);
     }
 
-    return {createMessage, messageAdded, participantChanged};
+    return {createMessage, messageChanged, participantChanged};
   })
   .views(self => ({
     get authParticipant() {
@@ -63,6 +70,9 @@ export const ChatRoom = types
     },
     get typingParticipants() {
       return this.participants.filter(participant => participant.isTyping);
+    },
+    getParticipant(userId: string) {
+      return self.participantsMap.get(userId);
     },
   }));
 

@@ -10,8 +10,16 @@ export const UsersStore = types
   })
   .actions(self => {
     const fetchUser = flow(function* (id: string) {
-      const dbUser = yield DataLayer.Users.getUserFromDB(id);
-      keepUser(dbUser);
+      if (!self.users.get(id)) {
+        const dbUser = yield DataLayer.Users.getUserFromDB(id);
+        keepUser(dbUser);
+      }
+    });
+
+    const fetchUsers = flow(function* (ids: string[]) {
+      for (let i = 0; i < ids.length; i++) {
+        yield fetchUser(ids[i]);
+      }
     });
 
     function keepUser(dbUser: IDBUser) {
@@ -20,7 +28,7 @@ export const UsersStore = types
       return user;
     }
 
-    return {fetchUser, keepUser};
+    return {fetchUser, keepUser, fetchUsers};
   });
 
 export const usersStore = UsersStore.create();

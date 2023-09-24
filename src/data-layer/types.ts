@@ -18,10 +18,16 @@ export interface IDBMessage {
   text: string;
   owner: string;
   createdAt: number;
+  readers?: Record<string, IDBReader>;
 }
 
 export interface IDBParticipant {
   user: string;
   inChat: boolean;
   isTyping?: boolean;
+}
+
+export interface IDBReader {
+  user: string;
+  readAt: number;
 }

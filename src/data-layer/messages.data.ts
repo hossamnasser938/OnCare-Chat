@@ -13,15 +13,21 @@ export const Messages = {
     await ref.set(dbMessage);
   },
 
-  listenOnCreatedMessages(
+  listenOnMessages(
     chatRoomName: string,
-    cb: (message: IDBMessage) => void,
+    onMessageAdded: (message: IDBMessage) => void,
+    onMessageChanged: (message: IDBMessage) => void,
   ) {
     const ref = DB.CHAT_ROOMS_REF.child(chatRoomName).child('messages');
 
     ref.on('child_added', snapshot => {
       const message: IDBMessage = snapshot.val();
-      cb(message);
+      onMessageAdded(message);
+    });
+
+    ref.on('child_changed', snapshot => {
+      const message: IDBMessage = snapshot.val();
+      onMessageChanged(message);
     });
 
     return () => ref.off();

@@ -2,12 +2,16 @@ import {R} from '@res';
 import {hp, wp} from '@utils/styles';
 import styled from 'styled-components/native';
 
-export const Container = styled.Pressable<{isAuthUserMessage: boolean}>`
+export const OuterContainer = styled.View`
   margin-vertical: ${hp(1)}px;
+`;
+
+export const Container = styled.Pressable<{isAuthUserMessage: boolean}>`
   flex-direction: row;
   justify-content: ${props =>
     props.isAuthUserMessage ? 'flex-end' : 'flex-start'};
   align-items: flex-end;
+  margin-bottom: ${hp(1)}px;
 `;
 
 export const MessageWrapper = styled.View<{isAuthUserMessage: boolean}>`
@@ -38,4 +42,9 @@ export const MessageTimeText = styled.Text`
 export const Column = styled.View<{isAuthUserMessage: boolean}>`
   align-items: ${props =>
     props.isAuthUserMessage ? 'flex-end' : 'flex-start'};
+`;
+
+export const ParticipantsWrapper = styled.View<{isAuthUserMessage: boolean}>`
+  align-items: ${props =>
+    props.isAuthUserMessage ? 'flex-start' : 'flex-end'};
 `;

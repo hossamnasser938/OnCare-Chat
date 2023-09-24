@@ -3,11 +3,12 @@ import {
   CharactersAvatar,
   EAvatarSize,
 } from '@shared-components/characters-avatar';
+import {observer} from 'mobx-react-lite';
 import React from 'react';
 
 import {IParticipantAvatar} from './participant-avatar.types';
 
-export const ParticipantAvatar = (props: IParticipantAvatar) => {
+export const ParticipantAvatar = observer((props: IParticipantAvatar) => {
   const {size = EAvatarSize.TINY, participant} = props;
 
   return (
@@ -22,4 +23,4 @@ export const ParticipantAvatar = (props: IParticipantAvatar) => {
       }
     />
   );
-};
+});
