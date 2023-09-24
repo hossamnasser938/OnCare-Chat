@@ -1,6 +1,7 @@
+import {useBackSubscription} from '@hooks';
 import {useMSTStore} from '@state';
 import {observer} from 'mobx-react-lite';
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import {IChatRoomScreenProps} from './chat-room.types';
 import {ChatRoomView} from './chat-room.view';
@@ -11,11 +12,17 @@ export const ChatRoomScreen = observer((props: IChatRoomScreenProps) => {
   const {chatRoomsStore} = useMSTStore();
   const {openedChatRoom} = chatRoomsStore;
 
-  useChatRoomSubscribe(openedChatRoom!!);
-
   const sendMessageHandler = (text: string) => {
     openedChatRoom!!.createMessage(text);
   };
+
+  const onLeaveChatRoom = useCallback(() => {
+    chatRoomsStore.leaveChatRoom();
+  }, [chatRoomsStore]);
+
+  useBackSubscription(onLeaveChatRoom);
+
+  useChatRoomSubscribe(openedChatRoom!!);
 
   return (
     <ChatRoomView

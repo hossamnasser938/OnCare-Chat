@@ -1,12 +1,14 @@
 import {DataLayer} from '@data-layer';
+import {IDBUser} from '@data-layer/types';
 import {flow, types} from 'mobx-state-tree';
 
 import {IUser, User} from './user.mstmodel';
+import {usersStore} from './users.mstmodel';
 
 export const AuthStore = types
   .model('AuthStore', {
     initialized: false,
-    user: types.maybeNull(User),
+    user: types.maybeNull(types.reference(User)),
   })
   .views(self => ({
     get isAuth() {
@@ -18,8 +20,9 @@ export const AuthStore = types
       self.initialized = true;
     }
 
-    function setUser(user: IUser) {
-      self.user = User.create(user);
+    function setUser(dbUser: IDBUser) {
+      const user = usersStore.keepUser(dbUser);
+      self.user = user;
     }
 
     function clearUser() {

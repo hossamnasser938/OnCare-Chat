@@ -1,15 +1,19 @@
 import {DataLayer} from '@data-layer';
+import {IDBMessage, IDBParticipant} from '@data-layer/types';
 import {flow, Instance, types} from 'mobx-state-tree';
 
 import {authStore} from './auth.mstmodel';
-import {IMessage, Message} from './message.mstmodel';
+import {Message} from './message.mstmodel';
+import {Participant} from './participant.mstmodel';
+import {User} from './user.mstmodel';
 
 export const ChatRoom = types
   .model('ChatRoom', {
     name: types.identifier,
-    owner: types.string,
+    owner: types.reference(User),
     createdAt: types.number,
     messagesMap: types.map(Message),
+    participantsMap: types.map(Participant),
   })
   .actions(self => {
     const createMessage = flow(function* (text: string) {
@@ -17,11 +21,15 @@ export const ChatRoom = types
       yield DataLayer.Messages.createMessage(self.name, text, userId!!);
     });
 
-    function messageAdded(message: IMessage) {
-      self.messagesMap.set(message.id, message);
+    function messageAdded(dbMessage: IDBMessage) {
+      self.messagesMap.set(dbMessage.id, dbMessage);
     }
 
-    return {createMessage, messageAdded};
+    function participantChanged(dbParticipant: IDBParticipant) {
+      self.participantsMap.set(dbParticipant.user, dbParticipant);
+    }
+
+    return {createMessage, messageAdded, participantChanged};
   })
   .views(self => ({
     get chatRoomNameShortCut() {
@@ -33,6 +41,21 @@ export const ChatRoom = types
     },
     get messages() {
       return Array.from(self.messagesMap.values());
+    },
+    get participants() {
+      const userId = authStore.user?.id;
+      return Array.from(self.participantsMap.values())
+        .filter(participant => participant.user.id !== userId)
+        .sort((item, nextItem) => {
+          if (item.inChat && nextItem.inChat) {
+            return 0;
+          }
+          if (item.inChat && !nextItem.inChat) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
     },
   }));
 

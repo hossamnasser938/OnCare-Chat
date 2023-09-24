@@ -1,24 +1,29 @@
-import {IMessage} from '@state/models/message.mstmodel';
-
 import {DB} from './db';
+import {IDBMessage} from './types';
 
 export const Messages = {
   async createMessage(chatRoomName: string, text: string, userId: string) {
     const ref = DB.CHAT_ROOMS_REF.child(chatRoomName).child('messages').push();
-    await ref.set({id: ref.key, text, owner: userId, createdAt: Date.now()});
+    const dbMessage: IDBMessage = {
+      id: ref.key!!,
+      text,
+      owner: userId,
+      createdAt: Date.now(),
+    };
+    await ref.set(dbMessage);
   },
 
   listenOnCreatedMessages(
     chatRoomName: string,
-    cb: (message: IMessage) => void,
+    cb: (message: IDBMessage) => void,
   ) {
-    DB.CHAT_ROOMS_REF.child(chatRoomName)
-      .child('messages')
-      .on('child_added', snapshot => {
-        const message: IMessage = snapshot.val();
-        cb(message);
-      });
+    const ref = DB.CHAT_ROOMS_REF.child(chatRoomName).child('messages');
 
-    return () => DB.CHAT_ROOMS_REF.off();
+    ref.on('child_added', snapshot => {
+      const message: IDBMessage = snapshot.val();
+      cb(message);
+    });
+
+    return () => ref.off();
   },
 };

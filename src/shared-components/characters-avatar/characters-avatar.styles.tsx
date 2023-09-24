@@ -8,7 +8,7 @@ const AvatarSizeToWrapperDimMapper: Record<EAvatarSize, number> = {
   [EAvatarSize.LARGE]: 13,
   [EAvatarSize.MEDIUM]: 9,
   [EAvatarSize.SMALL]: 6,
-  [EAvatarSize.TINY]: 3,
+  [EAvatarSize.TINY]: 3.5,
 };
 
 const AvatarSizeToFontSizeMapper: Record<EAvatarSize, number> = {
@@ -19,22 +19,23 @@ const AvatarSizeToFontSizeMapper: Record<EAvatarSize, number> = {
 };
 
 const AvatarSizeToBorderWidthMapper: Record<EAvatarSize, number> = {
-  [EAvatarSize.LARGE]: 3,
-  [EAvatarSize.MEDIUM]: 2,
-  [EAvatarSize.SMALL]: 1,
-  [EAvatarSize.TINY]: 0.5,
+  [EAvatarSize.LARGE]: 3.5,
+  [EAvatarSize.MEDIUM]: 3,
+  [EAvatarSize.SMALL]: 2.5,
+  [EAvatarSize.TINY]: 2,
 };
 
 export const AvatarWrapper = styled.View<{
   size: EAvatarSize;
   backgroundColor?: string;
+  borderColor?: string;
 }>`
   width: ${props => hp(AvatarSizeToWrapperDimMapper[props.size])}px;
   height: ${props => hp(AvatarSizeToWrapperDimMapper[props.size])}px;
   border-radius: ${props =>
     hp(0.5 * hp(AvatarSizeToWrapperDimMapper[props.size]))}px;
   border-width: ${props => AvatarSizeToBorderWidthMapper[props.size]}px;
-  border-color: ${props => props.backgroundColor || R.colors.appTheme.primary};
+  border-color: ${props => props.borderColor || R.colors.appTheme.primary};
   background-color: ${props =>
     props.backgroundColor || R.colors.appTheme.primary};
   justify-content: center;

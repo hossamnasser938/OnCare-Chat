@@ -6,5 +6,6 @@ export * from './chat-room-participants';
 export * from './input';
 export * from './keyboard-avoiding-veiw';
 export * from './layout-components';
+export * from './participant-avatar';
 export * from './screen-container';
 export * from './user-avatar';

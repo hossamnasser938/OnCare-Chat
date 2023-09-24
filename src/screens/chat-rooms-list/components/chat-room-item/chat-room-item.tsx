@@ -1,10 +1,6 @@
 import {AppRoutes, IChatRoomsNavigationProp} from '@navigation/types';
 import {useNavigation} from '@react-navigation/native';
-import {
-  ChatRoomAvatar,
-  ChatRoomParticipants,
-  EAvatarSize,
-} from '@shared-components';
+import {ChatRoomAvatar, EAvatarSize} from '@shared-components';
 import {useMSTStore} from '@state';
 import React from 'react';
 
@@ -29,7 +25,6 @@ export const ChatRoomItem = (props: IChatRoomItemProps) => {
       <ChatRoomAvatar size={EAvatarSize.SMALL} chatRoom={chatRoom} />
       <Column>
         <ChatRoomName>{chatRoom.name}</ChatRoomName>
-        <ChatRoomParticipants chatRoom={chatRoom} />
       </Column>
     </Container>
   );

@@ -12,6 +12,7 @@ export const ChatRoomAvatar = (props: IUserAvatar) => {
       size={size}
       characters={chatRoom.chatRoomNameShortCut}
       backgroundColor={R.colors.black}
+      borderColor={R.colors.black}
       fontColor={R.colors.white}
     />
   );

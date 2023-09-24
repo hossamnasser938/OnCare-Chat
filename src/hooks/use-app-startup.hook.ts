@@ -15,7 +15,9 @@ export const useAppStartup = () => {
       } else {
         if (!authStore.user) {
           try {
-            const dbUser = await DataLayer.Auth.getUserFromDB(firebaseUser.uid);
+            const dbUser = await DataLayer.Users.getUserFromDB(
+              firebaseUser.uid,
+            );
             authStore.setUser(dbUser);
           } catch (err: any) {
             Alert.alert(translateErrorCode(err.code));

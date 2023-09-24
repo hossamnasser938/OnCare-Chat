@@ -1,4 +1,5 @@
 import {DataLayer} from '@data-layer';
+import {IDBChatRoom} from '@data-layer/types';
 import {flow, types} from 'mobx-state-tree';
 
 import {authStore} from './auth.mstmodel';
@@ -15,15 +16,22 @@ export const ChatRoomsStore = types
       yield DataLayer.ChatRooms.createChatRoom(name, userId!!);
     });
 
-    function chatRoomAdded(chatRoom: IChatRoom) {
-      self.chatRoomsMap.set(chatRoom.name, chatRoom);
+    function chatRoomAdded(dbChatRoom: IDBChatRoom) {
+      self.chatRoomsMap.set(dbChatRoom.name, dbChatRoom);
     }
 
     function joinChatRoom(chatRoom: IChatRoom) {
+      const userId = authStore.user?.id;
+      DataLayer.Participants.joinChatRoom(chatRoom.name, userId!!);
       self.openedChatRoom = chatRoom;
     }
 
     function leaveChatRoom() {
+      const userId = authStore.user?.id;
+      DataLayer.Participants.leaveChatRoom(
+        self.openedChatRoom?.name!!,
+        userId!!,
+      );
       self.openedChatRoom = null;
     }
 
@@ -31,9 +39,9 @@ export const ChatRoomsStore = types
   })
   .views(self => ({
     get chatRooms() {
-      const rooms = Array.from(self.chatRoomsMap.values());
-      rooms.sort((item, nextItem) => nextItem.createdAt - item.createdAt);
-      return rooms;
+      return Array.from(self.chatRoomsMap.values()).sort(
+        (item, nextItem) => nextItem.createdAt - item.createdAt,
+      );
     },
   }));
 

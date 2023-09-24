@@ -1,5 +1,5 @@
 import {R} from '@res';
-import {hp} from '@utils/styles';
+import {hp, wp} from '@utils/styles';
 import styled from 'styled-components/native';
 
 export const Container = styled.View<{isAuthUserMessage: boolean}>`
@@ -7,6 +7,7 @@ export const Container = styled.View<{isAuthUserMessage: boolean}>`
   flex-direction: row;
   justify-content: ${props =>
     props.isAuthUserMessage ? 'flex-end' : 'flex-start'};
+  align-items: flex-end;
 `;
 
 export const MessageWrapper = styled.View<{isAuthUserMessage: boolean}>`
@@ -23,4 +24,8 @@ export const MessageText = styled.Text<{isAuthUserMessage: boolean}>`
   font-size: ${hp(2)}px;
   color: ${props =>
     props.isAuthUserMessage ? R.colors.white : R.colors.black};
+`;
+
+export const MessageOwnerParticipantAvatarWrapper = styled.View`
+  margin-end: ${wp(1)}px;
 `;

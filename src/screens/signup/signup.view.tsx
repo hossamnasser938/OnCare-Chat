@@ -1,4 +1,4 @@
-import {useValidationRules} from '@hooks/use-validation-rules.hook';
+import {useValidationRules} from '@hooks';
 import {R} from '@res';
 import {
   Button,

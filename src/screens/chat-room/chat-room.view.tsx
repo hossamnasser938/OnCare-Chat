@@ -2,7 +2,6 @@ import {
   ChatRoomParticipants,
   HorizontalLine,
   ScreenContainer,
-  ScreenTitle,
 } from '@shared-components';
 import {observer} from 'mobx-react-lite';
 import React from 'react';
@@ -12,6 +11,7 @@ import {
   BackIcon,
   ChatRoomHeaderSectionInner,
   ChatRoomHeaderSectionOuter,
+  ChatRoomScreenTitle,
   ContentContainer,
   Header,
   KeyboardAvoidingView,
@@ -29,7 +29,7 @@ export const ChatRoomView = observer((props: IChatRoomViewProps) => {
         <Header>
           <ChatRoomHeaderSectionOuter>
             <ChatRoomHeaderSectionInner>
-              <ScreenTitle>{chatRoom.name}</ScreenTitle>
+              <ChatRoomScreenTitle>{chatRoom.name}</ChatRoomScreenTitle>
               <ChatRoomParticipants chatRoom={chatRoom} />
             </ChatRoomHeaderSectionInner>
           </ChatRoomHeaderSectionOuter>

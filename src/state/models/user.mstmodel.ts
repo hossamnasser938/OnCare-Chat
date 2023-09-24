@@ -2,7 +2,7 @@ import {Instance, types} from 'mobx-state-tree';
 
 export const User = types
   .model('User', {
-    id: '',
+    id: types.identifier,
     email: '',
     firstName: '',
     lastName: '',

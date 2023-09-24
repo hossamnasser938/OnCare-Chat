@@ -1,4 +1,5 @@
 import {R} from '@res';
+import {ScreenTitle} from '@shared-components';
 import {hp, wp} from '@utils/styles';
 import {
   KeyboardAvoidingView as RNKeyboardAvoidingView,
@@ -30,6 +31,11 @@ export const ChatRoomHeaderSectionOuter = styled.View`
 `;
 
 export const ChatRoomHeaderSectionInner = styled.Pressable``;
+
+export const ChatRoomScreenTitle = styled(ScreenTitle)`
+  padding: 0px;
+  padding-bottom: ${hp(0.5)}px;
+`;
 
 export const ContentContainer = styled.View`
   flex: 1;
