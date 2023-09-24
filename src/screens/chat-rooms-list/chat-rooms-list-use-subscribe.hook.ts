@@ -8,7 +8,6 @@ export const useChatRoomsListSubscribe = () => {
   useEffect(() => {
     const unsubscribe = DataLayer.ChatRooms.listenOnCreatedChatRooms(
       chatRoom => {
-        console.log('chatroom', chatRoom);
         chatRoomsStore.chatRoomAdded(chatRoom);
       },
     );

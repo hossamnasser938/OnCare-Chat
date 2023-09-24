@@ -28,4 +28,5 @@ export const strings = {
   createNewChat: 'Create New Chat',
   create: 'Create',
   chatRoomName: 'Chat Room Name',
+  typeMessage: 'Type message ...',
 };

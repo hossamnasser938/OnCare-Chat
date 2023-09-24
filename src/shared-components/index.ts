@@ -2,6 +2,7 @@ export * from './atoms';
 export * from './button';
 export * from './characters-avatar';
 export * from './chat-room-avatar';
+export * from './chat-room-participants';
 export * from './input';
 export * from './keyboard-avoiding-veiw';
 export * from './layout-components';

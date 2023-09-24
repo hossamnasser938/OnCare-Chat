@@ -7,6 +7,7 @@ import {ChatRoom, IChatRoom} from './chat-room.mstmodel';
 export const ChatRoomsStore = types
   .model('ChatRoomsStore', {
     chatRoomsMap: types.map(ChatRoom),
+    openedChatRoom: types.maybeNull(types.reference(ChatRoom)),
   })
   .actions(self => {
     const createRoom = flow(function* (name: string) {
@@ -18,7 +19,15 @@ export const ChatRoomsStore = types
       self.chatRoomsMap.set(chatRoom.name, chatRoom);
     }
 
-    return {createRoom, chatRoomAdded};
+    function joinChatRoom(chatRoom: IChatRoom) {
+      self.openedChatRoom = chatRoom;
+    }
+
+    function leaveChatRoom() {
+      self.openedChatRoom = null;
+    }
+
+    return {createRoom, chatRoomAdded, joinChatRoom, leaveChatRoom};
   })
   .views(self => ({
     get chatRooms() {

@@ -15,6 +15,6 @@ export const ScreenTitle = styled.Text`
   text-align: center;
   color: ${R.colors.appTheme.primary};
   font-weight: 500;
-  font-size: ${hp(5)}px;
+  font-size: ${hp(4)}px;
   padding: ${hp(2)}px;
 `;

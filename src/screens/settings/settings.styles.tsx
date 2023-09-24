@@ -10,7 +10,7 @@ export const ProfileWrapper = styled.View`
 `;
 
 export const UserNameText = styled.Text`
-  font-size: ${hp(4)}px;
+  font-size: ${hp(3.5)}px;
   color: ${R.colors.appTheme.primary};
   margin-start: ${wp(4)}px;
 `;

@@ -1,11 +1,10 @@
 import {AppRoutes} from '@navigation/routes';
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {IChatRoom} from '@state';
 
 export type IChatRoomsParamList = {
   [AppRoutes.ChatRoomsListScreen]: undefined;
-  [AppRoutes.ChatRoomScreen]: {chatRoom: IChatRoom};
+  [AppRoutes.ChatRoomScreen]: undefined;
   [AppRoutes.CreateChatRoomScreen]: undefined;
 };
 

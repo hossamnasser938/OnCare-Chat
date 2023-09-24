@@ -7,5 +7,5 @@ export enum EValidityState {
 }
 
 export interface IInputProps extends TextInputProps {
-  validityState: EValidityState;
+  validityState?: EValidityState;
 }

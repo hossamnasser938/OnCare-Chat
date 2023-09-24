@@ -11,7 +11,6 @@ export const ChatRoomsListScreen = observer((props: IChatRoomsScreenProps) => {
   const {navigation} = props;
   const {chatRoomsStore} = useMSTStore();
   const {chatRooms} = chatRoomsStore;
-  console.log('chatRooms', chatRooms);
 
   useChatRoomsListSubscribe();
 

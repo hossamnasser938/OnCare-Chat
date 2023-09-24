@@ -4,4 +4,6 @@ export const images = {
   bubbleChat: require('./bubblechat.png'),
   filledChat: require('./filledchat.png'),
   settings: require('./settings.png'),
+  back: require('./back.png'),
+  paperPlane: require('./paperplane.png'),
 };
