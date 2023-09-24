@@ -5,5 +5,6 @@ export const images = {
   filledChat: require('./filledchat.png'),
   settings: require('./settings.png'),
   back: require('./back.png'),
+  left: require('./left.png'),
   paperPlane: require('./paperplane.png'),
 };

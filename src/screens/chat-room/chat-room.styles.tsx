@@ -14,7 +14,7 @@ export const Header = styled.View`
 `;
 
 export const BackIcon = styled.Image.attrs({
-  source: R.images.back,
+  source: R.images.left,
 })`
   padding: ${hp(2)}px;
 `;
