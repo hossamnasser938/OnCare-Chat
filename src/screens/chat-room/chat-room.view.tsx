@@ -17,8 +17,7 @@ import {
   KeyboardAvoidingView,
 } from './chat-room.styles';
 import {IChatRoomViewProps} from './chat-room.types';
-import {MessageInput} from './components/message-input';
-import {MessagesList} from './components/messages-list';
+import {MessageInput, MessagesList, TypingIndicators} from './components';
 
 export const ChatRoomView = observer((props: IChatRoomViewProps) => {
   const {chatRoom, goBack, sendMessageHandler} = props;
@@ -41,6 +40,7 @@ export const ChatRoomView = observer((props: IChatRoomViewProps) => {
 
         <ContentContainer>
           <MessagesList messages={chatRoom.messages} />
+          <TypingIndicators typingParticipants={chatRoom.typingParticipants} />
           <MessageInput onSubmit={sendMessageHandler} />
         </ContentContainer>
       </KeyboardAvoidingView>

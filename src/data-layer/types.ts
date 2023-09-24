@@ -23,4 +23,5 @@ export interface IDBMessage {
 export interface IDBParticipant {
   user: string;
   inChat: boolean;
+  isTyping?: boolean;
 }

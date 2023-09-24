@@ -32,6 +32,10 @@ export const ChatRoom = types
     return {createMessage, messageAdded, participantChanged};
   })
   .views(self => ({
+    get authParticipant() {
+      const userId = authStore.user?.id;
+      return self.participantsMap.get(userId!!);
+    },
     get chatRoomNameShortCut() {
       return self.name
         .split(' ')
@@ -56,6 +60,9 @@ export const ChatRoom = types
             return 1;
           }
         });
+    },
+    get typingParticipants() {
+      return this.participants.filter(participant => participant.isTyping);
     },
   }));
 

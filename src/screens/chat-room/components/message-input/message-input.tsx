@@ -1,5 +1,6 @@
 import {R} from '@res';
 import {Input} from '@shared-components';
+import {useMSTStore} from '@state';
 import React, {useState} from 'react';
 import {Pressable} from 'react-native';
 
@@ -8,6 +9,8 @@ import {IMessageInputProps} from './message-input.types';
 
 export const MessageInput = (props: IMessageInputProps) => {
   const {onSubmit} = props;
+  const {chatRoomsStore} = useMSTStore();
+
   const [input, setInput] = useState('');
 
   const submitHandler = () => {
@@ -15,6 +18,14 @@ export const MessageInput = (props: IMessageInputProps) => {
       onSubmit(input);
       setInput('');
     }
+  };
+
+  const onInputFocus = () => {
+    chatRoomsStore.openedChatRoom?.authParticipant?.startTyping();
+  };
+
+  const onInputBlur = () => {
+    chatRoomsStore.openedChatRoom?.authParticipant?.stopTyping();
   };
 
   return (
@@ -26,6 +37,8 @@ export const MessageInput = (props: IMessageInputProps) => {
           onChangeText={setInput}
           returnKeyType="done"
           onSubmitEditing={submitHandler}
+          onFocus={onInputFocus}
+          onBlur={onInputBlur}
         />
       </InputWrapper>
       <Pressable onPress={submitHandler}>
