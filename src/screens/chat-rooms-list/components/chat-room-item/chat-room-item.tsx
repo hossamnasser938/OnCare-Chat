@@ -26,7 +26,7 @@ export const ChatRoomItem = (props: IChatRoomItemProps) => {
 
   return (
     <Container onPress={navigateToChatRoomScreen}>
-      <ChatRoomAvatar size={EAvatarSize.MEDIUM} chatRoom={chatRoom} />
+      <ChatRoomAvatar size={EAvatarSize.SMALL} chatRoom={chatRoom} />
       <Column>
         <ChatRoomName>{chatRoom.name}</ChatRoomName>
         <ChatRoomParticipants chatRoom={chatRoom} />

@@ -12,7 +12,7 @@ export const CreateChatRoomBtnWrapper = styled.View`
 
 export const CreateChatRoomBtn = styled(ButtonWrapper)`
   align-items: center;
-  padding: ${hp(4)}px;
+  padding: ${hp(3)}px;
   border-radius: ${hp(10)}px;
 `;
 

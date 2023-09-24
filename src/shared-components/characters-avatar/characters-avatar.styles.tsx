@@ -5,24 +5,24 @@ import styled from 'styled-components/native';
 import {EAvatarSize} from './characters-avatar.types';
 
 const AvatarSizeToWrapperDimMapper: Record<EAvatarSize, number> = {
-  [EAvatarSize.LARGE]: 14,
-  [EAvatarSize.MEDIUM]: 10,
-  [EAvatarSize.SMALL]: 7,
-  [EAvatarSize.TINY]: 4,
+  [EAvatarSize.LARGE]: 13,
+  [EAvatarSize.MEDIUM]: 9,
+  [EAvatarSize.SMALL]: 6,
+  [EAvatarSize.TINY]: 3,
 };
 
 const AvatarSizeToFontSizeMapper: Record<EAvatarSize, number> = {
-  [EAvatarSize.LARGE]: 8,
-  [EAvatarSize.MEDIUM]: 6,
-  [EAvatarSize.SMALL]: 4,
-  [EAvatarSize.TINY]: 2,
+  [EAvatarSize.LARGE]: 7,
+  [EAvatarSize.MEDIUM]: 5,
+  [EAvatarSize.SMALL]: 3,
+  [EAvatarSize.TINY]: 1.5,
 };
 
 const AvatarSizeToBorderWidthMapper: Record<EAvatarSize, number> = {
-  [EAvatarSize.LARGE]: 4,
-  [EAvatarSize.MEDIUM]: 3,
-  [EAvatarSize.SMALL]: 2,
-  [EAvatarSize.TINY]: 1,
+  [EAvatarSize.LARGE]: 3,
+  [EAvatarSize.MEDIUM]: 2,
+  [EAvatarSize.SMALL]: 1,
+  [EAvatarSize.TINY]: 0.5,
 };
 
 export const AvatarWrapper = styled.View<{

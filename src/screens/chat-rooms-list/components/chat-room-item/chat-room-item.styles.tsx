@@ -7,7 +7,7 @@ export const Container = styled.Pressable`
   border-radius: 20px;
   border-width: 1px;
   border-color: ${R.colors.lightGrey};
-  padding: ${hp(2)}px;
+  padding: ${hp(1)}px;
   margin-horizontal: ${wp(2)}px;
   margin-vertical: ${hp(1)}px;
   flex-direction: row;
@@ -19,7 +19,7 @@ export const Column = styled.View`
 `;
 
 export const ChatRoomName = styled.Text`
-  font-size: ${hp(4)}px;
+  font-size: ${hp(3)}px;
 `;
 
 export const ParticipantsWrapper = styled.View`
