@@ -1,79 +1,41 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# OnCare Chat
 
-# Getting Started
+## App Architecture
+- I'm adapting here a simple layered architecture consisting of 3 layers: UI, state & hooks, and data layer.
+  - UI is the screens and components
+  - State is implemented using Mobx MST. Inside this layer, there are a bunch of hooks to subscribe for changes on the Data Layer and call relevant actions from state models.
+  - Data layer is implemented using Firebase. It depends on Firebase Auth and Firebase Realtime Database APIs.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+<img width="764" alt="Screenshot 2023-09-24 at 11 04 22 PM" src="https://github.com/hossamnasser938/OnCare-Chat/assets/27894818/cd9d669c-2665-41c1-b577-7f63a6ae8a46">
 
-## Step 1: Start the Metro Server
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## UI Navigation Hierarchy
+- The app navigation hierarchy starts with an `App navigator` that switches between `Auth Navigator` and `Main Navigator` based on user authentication state which is derived from `State` layer.
+- The `Auth Navigator` is a simple stack navigator with `Landing`, `Signin` and `Signup` screens.
+- The `Main Navigator` is a simple bottom tabs navigator with 2 nested navigators for tabs.
+- The `ChatRooms Navigator` is a simple stack navigator with `ChatRoomsList`, `ChatRoom`, and `CreateChatRoom` screens.
+- The `Settings` navigator is a simple stack navigator with only one screen `Settings`.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+<img width="845" alt="Screenshot 2023-09-24 at 11 05 13 PM" src="https://github.com/hossamnasser938/OnCare-Chat/assets/27894818/83458c86-6fa6-49e1-99e6-898e53f5c743">
 
-```bash
-# using npm
-npm start
 
-# OR using Yarn
-yarn start
-```
+## State
+- The state layer consists of hooks and MST models.
+- The hooks are only for subscription purpose and to leverage the `React` hooks unsubscribtion power.
+- The MST models starte with `RootStore` that wraps everything.
+- The `AuthStore` is all about maintaining user auth state.
+- The `UsersStore` is about maintaining the users we fetch from data layer to be mapped as references into other models.
+- The `ChatRoomsStore` is for maintaining the list of chat rooms.
+- The `ChatRoom` is for maintaining the list of participants inside the room and the messages there.
+- The `Participant`, `Message`, and `Reader` is for abstracting operations and computed properties of each.
 
-## Step 2: Start your Application
+<img width="675" alt="Screenshot 2023-09-24 at 11 06 15 PM" src="https://github.com/hossamnasser938/OnCare-Chat/assets/27894818/571431d8-76b5-460d-9d3b-591f7fa2e177">
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
-### For Android
+## Data Layer
+- The Data Layer is a simple API for abstraction purpose that hides data operations inside. IT leverages Firebase Auth and Firebase Realtim Database capabilities to help building realtime features.
 
-```bash
-# using npm
-npm run android
+<img width="673" alt="Screenshot 2023-09-24 at 11 06 50 PM" src="https://github.com/hossamnasser938/OnCare-Chat/assets/27894818/f3a55416-3324-4a09-a6f8-4c32450f5a93">
 
-# OR using Yarn
-yarn android
-```
 
-### For iOS
 
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
